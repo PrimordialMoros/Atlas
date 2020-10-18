@@ -76,11 +76,6 @@ tasks {
         isPreserveFileTimestamps = false
         isReproducibleFileOrder = true
     }
-    withType<JavaCompile> {
-        options.compilerArgs.add("-parameters")
-        options.isFork = true
-        options.forkOptions.executable = "javac"
-    }
     named<Copy>("processResources") {
         filesMatching("plugin.yml") {
             expand("pluginVersion" to project.version)
