@@ -1,0 +1,6 @@
+name: Atlas
+description: Common library
+author: Moros
+version: ${pluginVersion}
+main: me.moros.atlas.Atlas
+api-version: 1.16
