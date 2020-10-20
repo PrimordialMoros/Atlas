@@ -48,7 +48,7 @@ public enum StorageType {
 	}
 
 	@Override
-	public @NonNull String toString() {
+	public String toString() {
 		return name;
 	}
 

@@ -1,14 +1,17 @@
 plugins {
     java
+    `maven-publish`
     id("com.github.johnrengelman.shadow").version("6.0.0")
 }
 
 group = "me.moros"
 version = "1.0.0"
 
-configure<JavaPluginConvention> {
+java {
     sourceCompatibility = JavaVersion.VERSION_1_8
     targetCompatibility = JavaVersion.VERSION_1_8
+    withJavadocJar()
+    withSourcesJar()
 }
 
 repositories {
@@ -81,4 +84,7 @@ tasks {
             expand("pluginVersion" to project.version)
         }
     }
+}
+publishing.publications.create<MavenPublication>("maven") {
+    from(components["java"])
 }

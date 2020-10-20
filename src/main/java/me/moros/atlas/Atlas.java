@@ -19,26 +19,27 @@
 
 package me.moros.atlas;
 
+import me.moros.atlas.logging.PluginLogger;
+import me.moros.atlas.logging.Sl4jPluginLogger;
 import org.bukkit.plugin.java.JavaPlugin;
-
-import java.util.logging.Logger;
+import org.slf4j.LoggerFactory;
 
 public class Atlas extends JavaPlugin {
 	private static Atlas plugin;
 
-	private Logger log;
+	private PluginLogger log;
 
 	@Override
 	public void onEnable() {
 		plugin = this;
-		log = getLogger();
+		log = new Sl4jPluginLogger(LoggerFactory.getLogger(getClass()));
 	}
 
 	@Override
 	public void onDisable() {
 	}
 
-	public static Logger getLog() {
+	public static PluginLogger getLog() {
 		return plugin.log;
 	}
 }
