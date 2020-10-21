@@ -1,5 +1,5 @@
 name: Atlas
-description: Common library
+description: Dummy plugin to add common libraries and dependencies to classpath.
 author: Moros
 version: ${pluginVersion}
 main: me.moros.atlas.Atlas
