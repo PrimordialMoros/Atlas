@@ -1,7 +1,6 @@
 allprojects {
     group = "me.moros"
     version = "1.0.0-SNAPSHOT"
-    extra["isReleaseVersion"] = !version.toString().endsWith("SNAPSHOT")
 
     apply<JavaPlugin>()
 
@@ -14,9 +13,6 @@ allprojects {
         withType<AbstractArchiveTask> {
             isPreserveFileTimestamps = false
             isReproducibleFileOrder = true
-        }
-        withType<Sign>().configureEach {
-            onlyIf { project.extra["isReleaseVersion"] as Boolean }
         }
     }
 }
