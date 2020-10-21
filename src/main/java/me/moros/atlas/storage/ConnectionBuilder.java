@@ -84,7 +84,7 @@ public class ConnectionBuilder<T extends Storage> {
 		return this;
 	}
 
-	public @Nullable Storage build(@NonNull String poolName) {
+	public @Nullable T build(@NonNull String poolName) {
 		if (poolNames.contains(poolName)) {
 			logger.warn(poolName + " is already registered!");
 			return null;
@@ -130,7 +130,7 @@ public class ConnectionBuilder<T extends Storage> {
 				break;
 		}
 
-		Storage storage = constructor.apply(engine, new HikariDataSource(config));
+		T storage = constructor.apply(engine, new HikariDataSource(config));
 		if (storage.init(logger)) {
 			poolNames.add(poolName);
 			return storage;
