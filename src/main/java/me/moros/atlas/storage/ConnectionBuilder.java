@@ -27,6 +27,7 @@ import org.checkerframework.checker.nullness.qual.NonNull;
 import org.checkerframework.checker.nullness.qual.Nullable;
 
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 import java.util.function.BiFunction;
 
@@ -46,7 +47,6 @@ public class ConnectionBuilder<T extends Storage> {
 	private ConnectionBuilder(BiFunction<StorageType, HikariDataSource, T> constructor, StorageType engine) {
 		this.constructor = constructor;
 		this.engine = engine;
-		this.logger = Atlas.getLog();
 	}
 
 	public ConnectionBuilder<T> setLogger(@NonNull PluginLogger logger) {
@@ -85,6 +85,9 @@ public class ConnectionBuilder<T extends Storage> {
 	}
 
 	public @Nullable T build(@NonNull String poolName) {
+		if (logger == null) {
+			logger = Objects.requireNonNull(Atlas.getLog());
+		}
 		if (poolNames.contains(poolName)) {
 			logger.warn(poolName + " is already registered!");
 			return null;
@@ -139,21 +142,13 @@ public class ConnectionBuilder<T extends Storage> {
 	}
 
 	/**
-	 * Constructs a new connection info builder
+	 * Create a new connection builder
+	 * @param constructor the constructor for the connection, defines the type
+	 * @param engine the storage engine to use
+	 * @param <T> the type to build
+	 * @return a connection builder of the appropriate type
 	 */
 	public static @NonNull <T extends Storage> ConnectionBuilder<T> create(@NonNull BiFunction<StorageType, HikariDataSource, @NonNull T> constructor, @NonNull StorageType engine) {
 		return new ConnectionBuilder<>(constructor, engine);
-	}
-
-	public static @NonNull <T extends Storage> ConnectionBuilder<T> mysql(@NonNull BiFunction<StorageType, HikariDataSource, @NonNull T> constructor) {
-		return new ConnectionBuilder<>(constructor, StorageType.MYSQL).setPort(3306);
-	}
-
-	public static @NonNull <T extends Storage> ConnectionBuilder<T> mariadb(@NonNull BiFunction<StorageType, HikariDataSource, @NonNull T> constructor) {
-		return new ConnectionBuilder<>(constructor, StorageType.MARIADB).setPort(3306);
-	}
-
-	public static @NonNull <T extends Storage> ConnectionBuilder<T> pgsql(@NonNull BiFunction<StorageType, HikariDataSource, @NonNull T> constructor) {
-		return new ConnectionBuilder<>(constructor, StorageType.POSTGRESQL).setPort(5432);
 	}
 }
