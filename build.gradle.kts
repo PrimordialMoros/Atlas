@@ -93,14 +93,16 @@ publishing {
     publications.create<MavenPublication>("maven") {
         from(components["java"])
     }
-    repositories {
-        maven {
-            credentials {
-                username = property("ossrhUsername") as String?
-                password = property("ossrhPassword") as String?
+    if (project.hasProperty("ossrhUsername") && project.hasProperty("ossrhPassword")) {
+        repositories {
+            maven {
+                credentials {
+                    username = project.property("ossrhUsername") as String?
+                    password = project.property("ossrhPassword") as String?
+                }
+                name = "Snapshot"
+                url = uri("https://oss.sonatype.org/content/repositories/snapshots/")
             }
-            name = "Snapshot"
-            url = uri("https://oss.sonatype.org/content/repositories/snapshots/")
         }
     }
 }
