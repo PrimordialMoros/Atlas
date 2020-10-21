@@ -1,11 +1,12 @@
 plugins {
     java
+    signing
     `maven-publish`
     id("com.github.johnrengelman.shadow").version("6.0.0")
 }
 
 group = "me.moros"
-version = "1.0.0"
+version = "1.0.0-SNAPSHOT"
 
 java {
     sourceCompatibility = JavaVersion.VERSION_1_8
@@ -79,12 +80,30 @@ tasks {
         isPreserveFileTimestamps = false
         isReproducibleFileOrder = true
     }
+    withType<Sign>().configureEach {
+        onlyIf { !version.toString().endsWith("SNAPSHOT") }
+    }
     named<Copy>("processResources") {
         filesMatching("plugin.yml") {
             expand("pluginVersion" to project.version)
         }
     }
 }
-publishing.publications.create<MavenPublication>("maven") {
-    from(components["java"])
+publishing {
+    publications.create<MavenPublication>("maven") {
+        from(components["java"])
+    }
+    repositories {
+        maven {
+            credentials {
+                username = property("ossrhUsername") as String?
+                password = property("ossrhPassword") as String?
+            }
+            name = "Snapshot"
+            url = uri("https://oss.sonatype.org/content/repositories/snapshots/")
+        }
+    }
+}
+signing {
+    sign(publishing.publications["maven"])
 }
