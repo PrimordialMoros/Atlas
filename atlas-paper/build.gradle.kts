@@ -1,5 +1,5 @@
 plugins {
-    id("com.github.johnrengelman.shadow").version("6.0.0")
+    id("com.github.johnrengelman.shadow").version("6.1.0")
 }
 
 repositories {
@@ -8,7 +8,7 @@ repositories {
 
 dependencies {
     implementation(project(path = ":atlas-core", configuration = "shadow"))
-    compileOnly("com.destroystokyo.paper", "paper-api", "1.16.3-R0.1-SNAPSHOT")
+    compileOnly("com.destroystokyo.paper", "paper-api", "1.16.4-R0.1-SNAPSHOT")
 }
 
 tasks {

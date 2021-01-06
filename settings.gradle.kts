@@ -1,2 +1,2 @@
-rootProject.name = "Atlas"
+rootProject.name = "atlas"
 include("atlas-core", "atlas-paper")
