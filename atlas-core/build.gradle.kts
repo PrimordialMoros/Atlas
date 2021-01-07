@@ -49,8 +49,8 @@ tasks {
             relocate("org.jdbi", "me.moros.atlas.jdbi")
             relocate("org.postgresql", "me.moros.atlas.postgresql")
             relocate("org.h2", "me.moros.atlas.h2")
-            relocate("io.leangen", "me.moros.atlas.jdbi-leangen")
-            relocate("org.antlr", "me.moros.atlas.jdbi-antlr")
+            relocate("io.leangen", "me.moros.atlas.leangen")
+            relocate("org.antlr", "me.moros.atlas.antlr")
             relocate("com.github.benmanes.caffeine", "me.moros.atlas.caffeine")
             relocate("net.jodah.expiringmap", "me.moros.atlas.expiringmap")
         }
