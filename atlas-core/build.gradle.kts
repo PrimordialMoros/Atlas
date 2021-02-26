@@ -9,12 +9,9 @@ repositories {
 
 dependencies {
     implementation("me.moros", "storage", "1.0.0")
-    implementation("org.checkerframework", "checker-qual","3.9.0")
-    implementation("com.github.ben-manes.caffeine", "caffeine", "2.8.8") {
+    implementation("org.checkerframework", "checker-qual","3.10.0")
+    implementation("com.github.ben-manes.caffeine", "caffeine", "2.9.0") {
         exclude(module = "error_prone_annotations")
-        exclude(module = "checker-qual")
-    }
-    implementation("net.kyori", "adventure-platform-bukkit", "4.0.0-SNAPSHOT") {
         exclude(module = "checker-qual")
     }
     implementation("org.spongepowered", "configurate-hocon", "4.0.0") {
@@ -24,7 +21,7 @@ dependencies {
         exclude(module = "caffeine")
         exclude(module = "slf4j-api")
     }
-    implementation("com.zaxxer", "HikariCP", "3.4.5") {
+    implementation("com.zaxxer", "HikariCP", "4.0.2") {
         exclude(module = "slf4j-api")
     }
     implementation("org.postgresql", "postgresql", "42.2.18")
@@ -39,7 +36,6 @@ tasks {
         archiveClassifier.set("")
         dependencies {
             relocate("org.checkerframework", "me.moros.atlas.cf")
-            relocate("net.kyori", "me.moros.atlas.kyori")
             relocate("org.spongepowered.configurate", "me.moros.atlas.configurate")
             relocate("com.typesafe", "me.moros.atlas.typesafe")
             relocate("co.aikar.taskchain", "me.moros.atlas.taskchain")
