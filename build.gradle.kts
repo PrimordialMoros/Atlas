@@ -1,12 +1,12 @@
 allprojects {
     group = "me.moros"
-    version = "1.1.0-SNAPSHOT"
+    version = "1.2.0-SNAPSHOT"
 
     apply<JavaPlugin>()
 
     configure<JavaPluginConvention> {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_11
+        targetCompatibility = JavaVersion.VERSION_11
     }
 
     tasks {

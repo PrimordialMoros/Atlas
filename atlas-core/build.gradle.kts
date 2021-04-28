@@ -1,6 +1,6 @@
 plugins {
     `maven-publish`
-    id("com.github.johnrengelman.shadow").version("6.1.0")
+    id("com.github.johnrengelman.shadow").version("7.0.0")
 }
 
 repositories {
@@ -9,19 +9,19 @@ repositories {
 
 dependencies {
     implementation("me.moros", "storage", "1.0.0")
-    implementation("org.checkerframework", "checker-qual","3.10.0")
-    implementation("com.github.ben-manes.caffeine", "caffeine", "2.9.0") {
+    implementation("org.checkerframework", "checker-qual","3.12.0")
+    implementation("com.github.ben-manes.caffeine", "caffeine", "3.0.1") {
         exclude(module = "error_prone_annotations")
         exclude(module = "checker-qual")
     }
     implementation("org.spongepowered", "configurate-hocon", "4.0.0") {
         exclude(module = "checker-qual")
     }
-    implementation("org.jdbi", "jdbi3-core", "3.18.0") {
+    implementation("org.jdbi", "jdbi3-core", "3.20.0") {
         exclude(module = "caffeine")
         exclude(module = "slf4j-api")
     }
-    implementation("com.zaxxer", "HikariCP", "4.0.2") {
+    implementation("com.zaxxer", "HikariCP", "4.0.3") {
         exclude(module = "slf4j-api")
     }
     implementation("org.postgresql", "postgresql", "42.2.18")
