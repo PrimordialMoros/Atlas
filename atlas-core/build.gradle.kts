@@ -28,7 +28,6 @@ dependencies {
     implementation("com.h2database", "h2", "1.4.200")
     implementation("co.aikar", "taskchain-bukkit", "3.7.2")
     implementation("co.aikar","acf-paper", "0.5.0-SNAPSHOT")
-    implementation("net.jodah", "expiringmap", "0.5.9")
 }
 
 tasks {
@@ -48,7 +47,6 @@ tasks {
             relocate("io.leangen", "me.moros.atlas.leangen")
             relocate("org.antlr", "me.moros.atlas.antlr")
             relocate("com.github.benmanes.caffeine", "me.moros.atlas.caffeine")
-            relocate("net.jodah.expiringmap", "me.moros.atlas.expiringmap")
         }
     }
     build {
