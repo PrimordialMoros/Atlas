@@ -3,43 +3,34 @@ plugins {
     id("com.github.johnrengelman.shadow").version("7.0.0")
 }
 
-repositories {
-    maven("https://repo.aikar.co/content/groups/aikar/")
-}
-
 dependencies {
-    implementation("me.moros", "storage", "1.0.0")
-    implementation("org.checkerframework", "checker-qual","3.12.0")
-    implementation("com.github.ben-manes.caffeine", "caffeine", "3.0.1") {
+    implementation("me.moros", "storage", "2.0.0")
+    implementation("com.github.ben-manes.caffeine", "caffeine", "3.0.3") {
         exclude(module = "error_prone_annotations")
         exclude(module = "checker-qual")
     }
-    implementation("org.spongepowered", "configurate-hocon", "4.0.0") {
+    implementation("org.spongepowered", "configurate-hocon", "4.1.1") {
         exclude(module = "checker-qual")
     }
-    implementation("org.jdbi", "jdbi3-core", "3.20.0") {
+    implementation("org.jdbi", "jdbi3-core", "3.20.1") {
         exclude(module = "caffeine")
         exclude(module = "slf4j-api")
     }
     implementation("com.zaxxer", "HikariCP", "4.0.3") {
         exclude(module = "slf4j-api")
     }
-    implementation("org.postgresql", "postgresql", "42.2.18")
+    implementation("org.postgresql", "postgresql", "42.2.23") {
+        exclude(module = "checker-qual")
+    }
     implementation("com.h2database", "h2", "1.4.200")
-    implementation("co.aikar", "taskchain-bukkit", "3.7.2")
-    implementation("co.aikar","acf-paper", "0.5.0-SNAPSHOT")
 }
 
 tasks {
     shadowJar {
         archiveClassifier.set("")
         dependencies {
-            relocate("org.checkerframework", "me.moros.atlas.cf")
             relocate("org.spongepowered.configurate", "me.moros.atlas.configurate")
             relocate("com.typesafe", "me.moros.atlas.typesafe")
-            relocate("co.aikar.taskchain", "me.moros.atlas.taskchain")
-            relocate("co.aikar.commands", "me.moros.atlas.acf")
-            relocate("co.aikar.locales", "me.moros.atlas.locales")
             relocate("com.zaxxer.hikari", "me.moros.atlas.hikari")
             relocate("org.jdbi", "me.moros.atlas.jdbi")
             relocate("org.postgresql", "me.moros.atlas.postgresql")
