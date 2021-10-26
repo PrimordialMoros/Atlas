@@ -9,8 +9,6 @@ For a full list, look at the build script inside the `atlas-core` module.
 
 ## Building
 
-This project requires Java 11 or newer and uses Gradle (which comes with a wrapper, so you don't need to install it).
-
-Module `atlas-paper` can be used to build a dummy plugin jar for PaperMC servers that adds `atlas-core` to the classpath.
+This project requires Java 16 or newer and uses Gradle (which comes with a wrapper, so you don't need to install it).
 
 Open a terminal and run `./gradlew build`
