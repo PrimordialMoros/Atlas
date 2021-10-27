@@ -4,7 +4,7 @@ plugins {
 }
 
 dependencies {
-    implementation("me.moros", "storage", "2.0.0")
+    implementation("me.moros", "storage", "2.1.0")
     implementation("com.github.ben-manes.caffeine", "caffeine", "3.0.4") {
         exclude(module = "error_prone_annotations")
         exclude(module = "checker-qual")
